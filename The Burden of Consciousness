@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Burden of Consciousness</title>
+    <style>
+        /* Reset and Base */
+        body, html {
+            margin: 0;
+            padding: 0;
+            background-color: #070707; /* Extremely dark grey */
+            color: #e3e1d9; /* Parchment white */
+            font-family: "Georgia", serif;
+            overflow-x: hidden;
+        }
+
+        /* LEFT STAGE - Anchored permanently to the screen */
+        .left-stage {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 45vw;
+            background-color: #000000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-right: 1px solid #1a1a1a;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        /* RIGHT TEXT - Scrolls normally, pushed to the right */
+        .right-text {
+            width: 55vw;
+            margin-left: 45vw; /* Leaves space for the fixed left stage */
+            padding: 15vh 8vw 20vh 6vw;
+            box-sizing: border-box;
+            background-color: #0a0a0a;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Dynamic Typography in the Left Stage */
+        #stage-content {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-weight: 900;
+            text-transform: uppercase;
+            font-size: 5vw;
+            color: #ffffff;
+            text-align: center;
+            line-height: 1;
+            transition: all 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        /* Typography Styles */
+        h1 {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-size: 2.8em;
+            font-weight: 300;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: #ffffff;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            font-family: "Georgia", serif;
+            font-style: italic;
+            color: #888;
+            font-size: 1.2em;
+            margin-bottom: 15vh;
+        }
+
+        h2 {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 3px;
+            color: #666;
+            text-transform: uppercase;
+            margin-top: 15vh;
+            margin-bottom: 30px;
+        }
+
+        p {
+            font-size: 1.25em;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            color: #c4c1b9;
+        }
+
+        /* Text Focus Effect */
+        section {
+            opacity: 0.2;
+            transition: opacity 0.8s ease;
+        }
+        
+        section.active {
+            opacity: 1;
+        }
+
+        /* =========================================
+           STATE ANIMATIONS FOR THE LEFT STAGE
+           ========================================= */
+
+        /* Intro State */
+        .state-intro #stage-content {
+            letter-spacing: 2vw;
+            opacity: 0.5;
+            filter: blur(4px);
+        }
+
+        /* Sonnet 66 State: The Inventory */
+        .state-sonnet #stage-content {
+            font-size: 2vw;
+            line-height: 1.5;
+            text-align: left;
+            color: #8a0303; /* Deep blood red */
+            letter-spacing: 0;
+            filter: blur(0);
+        }
+
+        /* Hamlet State: Dust */
+        .state-hamlet #stage-content {
+            font-size: 8vw;
+            letter-spacing: 5vw; /* Spreads apart like dust */
+            opacity: 0;          /* Dissolves */
+            filter: blur(10px);
+            transform: translateY(50px);
+        }
+
+        /* Synthesis State: Weight */
+        .state-synthesis #stage-content {
+            font-size: 6vw;
+            letter-spacing: -0.5vw;
+            transform: scaleY(0.5); /* Looks literally crushed/heavy */
+            opacity: 1;
+            filter: blur(0);
+            color: #fff;
+        }
+
+        /* Conclusion State: Void */
+        .state-conclusion #stage-content {
+            opacity: 0;
+        }
+
+        /* Mobile Adjustments (Stacks them vertically) */
+        @media (max-width: 900px) {
+            .left-stage { 
+                width: 100vw; 
+                height: 40vh; 
+                border-right: none; 
+                border-bottom: 1px solid #1a1a1a; 
+            }
+            .right-text { 
+                width: 100vw; 
+                margin-left: 0; 
+                margin-top: 40vh; 
+                padding: 10vw; 
+                background: rgba(10,10,10,0.95); 
+                backdrop-filter: blur(10px); 
+            }
+            #stage-content { font-size: 10vw; }
+            .state-sonnet #stage-content { font-size: 4vw; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- FIXED LEFT PANE -->
+    <div class="left-stage">
+        <div id="stage-content">PARADOX</div>
+    </div>
+
+    <!-- SCROLLING RIGHT PANE -->
+    <div class="right-text">
+        <section id="intro" class="active">
+            <h1>The Burden of Consciousness</h1>
+            <div class="subtitle">Tragic Humanism in Hamlet and Sonnet 66</div>
+            
+            <h2>The Renaissance Paradox</h2>
+            <p>Renaissance Humanism is often defined by its optimistic celebration of human potential, reason, and agency—a shift from the medieval focus on the divine to a focus on the human. However, William Shakespeare’s exploration of Humanism is far more ambivalent. He suggests that while human reason is godlike, it is also a source of profound suffering when placed in a corrupt world.</p>
+            <p>Through the existential weariness of Sonnet 66 and the philosophical paralysis of Prince Hamlet, Shakespeare presents a "Tragic Humanism." In both works, the humanist hero is not empowered by his intellect but paralyzed by it, forced to witness the gap between the ideal of human dignity and the reality of political corruption.</p>
+        </section>
+
+        <section id="sonnet">
+            <h2>The Architecture of Disillusion</h2>
+            <p>Sonnet 66 ("Tired with all these, for restful death I cry") serves as a concentrated manifesto of the humanist’s disillusionment. Unlike the typical love sonnet, this poem is a sociological critique. The speaker lists eleven specific societal wrongs, ranging from "purest faith unhappily forsworn" to "strength by limping sway disabled."</p>
+            <p>This list is deeply Humanist because it judges society by the standard of merit. The speaker is horrified that "folly" controls "skill" and that "simple truth" is silenced by "authority." This is the nightmare of the intellectual: living in a world where reason is subservient to raw power. The Humanist mind craves order and justice, but the world offers only chaos and inversion. The speaker’s desire for death is not merely depressive; it is a rational response to an irrational world. The only tether keeping him alive is human connection ("to leave my love alone"), suggesting that while society fails the individual, interpersonal love remains the last refuge of human value.</p>
+        </section>
+
+        <section id="hamlet">
+            <h2>The Quintessence of Dust</h2>
+            <p>If Sonnet 66 diagnoses the disease, Hamlet embodies the patient. Prince Hamlet is the quintessential Humanist: educated at Wittenberg (the cradle of the Reformation), skeptical, and obsessed with the power of language. His famous prose speech, "What a piece of work is a man," perfectly captures the Humanist dualism. He acknowledges man’s infinite faculty and "god-like" reason, yet immediately pivots to the reality of mortality: "this quintessence of dust."</p>
+            <p>Hamlet’s tragedy is that his Humanist education makes him unfit for the brutal world of Elsinore. A medieval hero would simply kill Claudius; Hamlet, the man of reason, must analyze the morality of the action, the nature of the ghost, and the consequences of the soul. His intellect allows him to see the "rottenness" of the state (echoing the corruptions of Sonnet 66) but traps him in inaction. He sees too much. When he laments that "the time is out of joint," he is expressing the same frustration as the speaker of the sonnet—that the hierarchy of the world is wrong, and a man of conscience has no place in it.</p>
+        </section>
+
+        <section id="synthesis">
+            <h2>The Crushing Weight of Awareness</h2>
+            <p>The connection between Sonnet 66 and Hamlet lies in the crushing weight of awareness. The "authority" that tongue-ties art in the sonnet is personified in the play by figures like Polonius and Claudius, who use surveillance and rhetoric to suppress the truth. Both the speaker of the sonnet and Hamlet are isolated by their clarity of vision; they are the only sane men in an insane world.</p>
+            <p>However, a key distinction exists in their resolution. The speaker of Sonnet 66 chooses to endure the world for the sake of love, finding a passive resistance in companionship. Hamlet, conversely, is denied this comfort—Ophelia is used as a pawn by the state, destroying his faith in connection. Without the anchor of love that saves the sonneteer, Hamlet is consumed by the corruption he despises, proving that in a political machine, the Humanist ideal of the "noble mind" is easily overthrown.</p>
+        </section>
+
+        <section id="conclusion">
+            <h2>The Tragedy of the Intellect</h2>
+            <p>Shakespeare does not reject Humanism; he complicates it. Through Sonnet 66 and Hamlet, he argues that to be fully human—to possess reason, conscience, and sensitivity—is to be vulnerable. The "piece of work" that is man is indeed noble in reason, but when surrounded by "strength by limping sway disabled," that reason becomes a torture device. Shakespeare’s Humanism is therefore not a triumph of the will, but a tragedy of the intellect, revealing that the cost of understanding the world is often the loss of the will to live in it.</p>
+        </section>
+    </div>
+
+    <script>
+        const stageContent = document.getElementById('stage-content');
+        const body = document.body;
+        
+        const stageData = {
+            "intro": "HUMANISM",
+            "sonnet": "1. As desert a beggar born<br>2. Needy nothing trimm'd in jollity<br>3. Purest faith unhappily forsworn<br>4. Gilded honour shamefully misplaced<br>5. Maiden virtue rudely strumpeted<br>6. Right perfection wrongfully disgraced<br>7. Strength by limping sway disabled<br>8. Art made tongue-tied by authority<br>9. Folly doctor-like controlling skill<br>10. Simple truth miscall'd simplicity<br>11. Captive good attending captain ill",
+            "hamlet": "DUST",
+            "synthesis": "WEIGHT",
+            "conclusion": ""
+        };
+
+        const sections = document.querySelectorAll('section');
+        const observerOptions = {
+            root: null,
+            rootMargin: '-40% 0px -40% 0px', 
+            threshold: 0
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    sections.forEach(sec => sec.classList.remove('active'));
+                    entry.target.classList.add('active');
+
+                    const id = entry.target.id;
+                    body.className = `state-${id}`;
+                    
+                    setTimeout(() => {
+                        stageContent.innerHTML = stageData[id];
+                    }, 300);
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => observer.observe(section));
+    </script>
+</body>
+</html>
